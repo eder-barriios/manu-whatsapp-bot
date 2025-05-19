@@ -25,3 +25,9 @@ def bot():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+@app.route('/bot', methods=['POST'])
+def bot():
+    data = request.form  # Twilio envia como x-www-form-urlencoded
+    user_message = data.get("Body", "")
+    response = gerar_resposta(user_message)
+    return response
